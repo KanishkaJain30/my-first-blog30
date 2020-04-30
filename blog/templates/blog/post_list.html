@@ -1,43 +1,11 @@
-{% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <title>Irrfan Khan</title>
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div class="page-header">
-            <h1><a href="/">My blog Post</a></h1>
-        </div>
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Irfan Khan was an Indian actor born on 7 Jnauary 1967 and died on 29 April 2020</p>
-        </div>
-
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>He was known for his work predominanatly in Hindi cinema, in addition to british and american films.</p>
-        </div>
-
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    {% for post in posts %}
-                        <div class="post">
-                            <div class="date">
-                                <p>published: {{ post.published_date }}</p>
-                            </div>
-                            <h2><a href="">{{ post.title }}</a></h2>
-                            <p>{{ post.text|linebreaksbr }}</p>
+{% extends 'blog/base.html' %}
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            {{ post.published_date }}
                         </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
-
+                        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
+ 
